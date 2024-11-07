@@ -134,7 +134,7 @@ def explain_prediction(probability, input_dict, surname):
 
 def generate_email(probability, input_dict, explanation, surname):
     prompt = f"""
-    You are a manager at HS Bank. You are responsible for ensuring customers stay with the bank and are incentivized with various offers.
+    You are a manager at UBL Bank. You are responsible for ensuring customers stay with the bank and are incentivized with various offers.
 
     You noticed a customer named {surname} has a {round(probability * 100, 1)}% probability of churning.
 
