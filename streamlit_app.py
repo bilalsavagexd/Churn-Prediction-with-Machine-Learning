@@ -38,6 +38,7 @@ xgboost_featureEngineered_model = load_model('xgb_model_feature_engineered.pkl')
 def prepare_input(credit_score, location, gender, age, tenure, balance,
                   num_products, has_credit_card, is_active_member,
                   estimated_salary):
+
     # Create a dictionary to store the input features
     input_dict = {
         'CreditScore': credit_score,
@@ -48,12 +49,16 @@ def prepare_input(credit_score, location, gender, age, tenure, balance,
         'HasCrCard': has_credit_card,
         'IsActivemember': is_active_member,
         'EstimatedSalary': estimated_salary,
-        **{f'Geography_{country}': 1 if location == country else 0 for country in ['France', 'Germany', 'Spain']},
-        'Gender_Male': 1 if gender == 'Male' else 0
+        'Geography_France': 1 if location == 'France' else 0,
+        'Geography_Germany': 1 if location == 'Germany' else 0,
+        'Geography_Spain': 1 if location == 'Spain' else 0,
+        'Gender_Male': 1 if gender == 'Male' else 0,
+        'Gender_Female': 1 if gender == 'Female' else 0,
     }
-    # Convert dictionary to a DataFrame row
     input_df = pd.DataFrame([input_dict])
     return input_df, input_dict
+
+print(' ')
 
 # Handling Churn prediction using multiple models and visualizes the results
 def make_prediction(input_df, input_dict):
