@@ -53,7 +53,3 @@ streamlit run streamlit_app.py
 ```
 ## Sneak Peak
 ![image](https://github.com/bilalsavagexd/Churn-Prediction-with-Machine-Learning/raw/main/Images/churn_predictior.png)
-
-License
--
-This project is licensed under the MIT License. See the LICENSE file for more details.
