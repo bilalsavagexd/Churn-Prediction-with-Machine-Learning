@@ -25,12 +25,8 @@ def load_model(filename):
 
 # Load the trained machine learning models
 xgboost_model = load_model('xgb_model.pkl')
-naive_bayes_model = load_model('nb_model.pkl')
 random_forest_model = load_model('rf_model.pkl')
-decision_tree_model = load_model('dt_model.pkl')
-svm_model = load_model('svm_model.pkl')
 knn_model = load_model('knn_model.pkl')
-voting_clade_model = load_model('voting_classifier.pkl')
 xgboost_SMOTE_model = load_model('xgboost_featureEngineered_with_SMOTE.pkl')
 xgboost_featureEngineered_model = load_model('xgb_model_feature_engineered.pkl')
 
@@ -64,7 +60,7 @@ print(' ')
 def make_prediction(input_df, input_dict):
     # Calculate churn probabilities for each model
     probabilities = {
-        'XGBoost': xgboost_model.predict_proba(input_df)[0][1],
+        'XGBoost': xgboost_SMOTE_model.predict_proba(input_df)[0][1],
         'Random_Forest': random_forest_model.predict_proba(input_df)[0][1],
         'K-Nearest_Neighbors': knn_model.predict_proba(input_df)[0][1],
     }
