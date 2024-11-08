@@ -4,15 +4,15 @@ Welcome to the Churn Prediction App! This app is designed to predict customer ch
 
 The app is deployed and accessible online: [Churn Predictor](https://churn-prediction-with-machine-learning.streamlit.app/)
 
-Features
--
--Data Visualization: Interactive charts and visualizations to explore customer data.
+## Features
 
--Model Comparisons: Multiple machine learning models (XGBoost, Random Forest, KNN, etc.) are compared for accuracy and performance.
+- Data Visualization: Interactive charts and visualizations to explore customer data.
 
--Real-Time Predictions: Make churn predictions based on new or existing customer data.
+- Model Comparisons: Multiple machine learning models (XGBoost, Random Forest, KNN, etc.) are compared for accuracy and performance.
 
--Interactive User Interface: A simple and sleek user interface built with Streamlit for ease of use.
+- Real-Time Predictions: Make churn predictions based on new or existing customer data.
+
+- Interactive User Interface: A simple and sleek user interface built with Streamlit for ease of use.
 
 ## Technologies Used
 
