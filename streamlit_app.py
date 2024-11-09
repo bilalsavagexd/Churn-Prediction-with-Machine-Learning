@@ -60,24 +60,25 @@ print(' ')
 def make_prediction(input_df, input_dict):
     # Calculate churn probabilities for each model
     probabilities = {
-        'XGBoost': xgboost_SMOTE_model.predict_proba(input_df)[0][1],
+        'XGBoost': xgboost_model.predict_proba(input_df)[0][1],
         'Random_Forest': random_forest_model.predict_proba(input_df)[0][1],
         'K-Nearest_Neighbors': knn_model.predict_proba(input_df)[0][1],
     }
-    # Calculate average churn probability
+     # Calculate average churn probability
     avg_probability = np.mean(list(probabilities.values()))
     # Visualize results using Streamlit and Plotly
-    col1, col2 = st.columns(2) # Create two columns for layout
+    col1, col2 =st.columns(2) # Create two columns for layout
     with col1:
-        fig = create_gauge_chart(avg_probability) # Create gauge chart using custom function
+        fig =create_gauge_chart(avg_probability) # Create gauge chart using custom function
         st.plotly_chart(fig, use_container_width=True)
-        st.write(f'The customer has a {avg_probability:.2%} probability of churning.')
+        st.write(f'The customer has a { avg_probability:.2%} probability of churning.')
     with col2:
         fig_probs = create_model_probability_chart(probabilities)  # Create model probability chart
         st.plotly_chart(fig_probs, use_container_width=True)
     return avg_probability
 
 def explain_prediction(probability, input_dict, surname):
+
     prompt = f'''You are an expert data scientist at a bank, where you specialize in interpreting and explaining predictions of machine learning models.
 
     Your machine learning model has predicted that a customer named {surname} has a {round(probability * 100, 1)}% probability of churning, based on the information provided below.
@@ -109,14 +110,16 @@ def explain_prediction(probability, input_dict, surname):
     Here are summary statistics for non-churned customers:
     {df[df['Exited'] == 0].describe()}
 
-    - If the customer has over 40% risk of churning , (generate a 3-sentence explanation of why they are at the risk of churning)
-    else
-    - If the customer has less than 40% risk of churning ,( generate a 3-sentence explanation of why they may not be at risk of churning)
-    -your explanation sh based on the customer's profile without referencing specific numbers or comparisons to data sets.
-    **Important:** Do not mention the probability of churning, the machine learning model, any specific model outputs, or do not provide any summary statistics.
+- If the customer has over 40% risk of churning , (generate a 3-sentence explanation of why they are at the risk of churning)
+else
+- If the customer has less than 40% risk of churning ,( generate a 3-sentence explanation of why they may not be at risk of churning)
+-your explanation sh based on the customer's profile without referencing specific numbers or comparisons to data sets.
+**Important:** Do not mention the probability of churning, the machine learning model, any specific model outputs, or do not provide any summary statistics.
 
-    '''
-    
+
+
+
+'''
     print("EXPLANATION PROMPT:", prompt)
 
     raw_response = client.chat.completions.create(
